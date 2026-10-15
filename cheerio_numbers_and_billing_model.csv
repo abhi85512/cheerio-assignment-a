@@ -1,0 +1,70 @@
+Tab 1: Support Volume Guesstimate & Deflection
+Parameter / Metric,Assumption / Value,Formula,Methodology & Rationale
+Cheerio Active Businesses,5000,Given in Brief,"Total active paying B2B accounts on Cheerio (D2C, Retail, BFSI, Hospitality)"
+Tier 1: Starter Accounts (60%),3000,=B2*0.60,"Small merchants, early setup phase, high touch needed"
+Tier 2: Growth Accounts (30%),1500,=B2*0.30,"Scaling D2C, automated cart recovery, multi-agent chat"
+Tier 3: Enterprise Accounts (10%),500,=B2*0.10,"Large brands (e.g. IndiaMART, IndusInd Bank, FabHotels)"
+Starter Ticket Frequency (per mo),1.5,1.5,"Heavy initial setup queries, occasional broadcast questions"
+Growth Ticket Frequency (per mo),3.0,3.0,"Campaign approvals, webhooks, analytics, flow edge-cases"
+Enterprise Ticket Frequency (per mo),6.0,6.0,"Dedicated API syncs, high throughput, multiple team seats"
+Total Monthly Support Queries,12000,=(B3*B6)+(B4*B7)+(B5*B8),"3,000*1.5 + 1,500*3.0 + 500*6.0 = 12,000 queries/month"
+Query Cat 1: Setup & Meta WABA Onboarding (40%),4800,=B9*0.40,"Phone unlinking, 2FA, Business Manager verification, payment"
+Query Cat 2: WhatsApp Templates & Formatting (25%),3000,=B9*0.25,"Variable syntax errors, category rejections, sample missing"
+Query Cat 3: Chatbot Flow Logic & Loops (20%),2400,=B9*0.20,"Broken conditional branches, trigger drop-offs, fallbacks"
+Query Cat 4: Integrations & Webhooks (10%),1200,=B9*0.10,"Shopify token expiration, CRM API mismatches, CSV imports"
+Query Cat 5: Billing & Legal Policy (5%),600,=B9*0.05,"Green tick appeals, GST name mismatch, disputed charges"
+Target Autonomous Deflection Rate,65.0%,0.65,"Queries completely resolved by AI Copilot without human touch"
+Monthly Queries Resolved by AI Copilot,7800,=B9*B15,"1-click auto-fixes + guided diagnostic workflows"
+Monthly Queries Escalated to Human Support,4200,=B9-B16,"Complex legal, custom webhooks, billing disputes (35%)"
+,,,
+Tab 2: Unit Economics & Running Cost Breakdown,,,
+Cost Component,Value,Formula,Source / Technical Rationale
+LLM Model Selected,OpenAI GPT-4o-mini / Claude 3.5 Haiku,Fixed,"High speed (<800ms TTFT), exceptional structured JSON schema accuracy"
+Model Input Price per 1M Tokens,$0.1500,0.1500,"OpenAI official pricing ($0.15 / 1M input tokens)"
+Model Output Price per 1M Tokens,$0.6000,0.6000,"OpenAI official pricing ($0.60 / 1M output tokens)"
+Average Input Tokens per Query Turn,1500,1500,"System prompt + user context + error logs + JSON schema"
+Average Output Tokens per Query Turn,300,300,"Diagnostic explanation + 1-click JSON repair payload"
+Average Turns per Resolution Session,2.0,2.0,"Turn 1: Diagnostic + preview; Turn 2: Confirmation / result"
+Total Input Tokens per Session,3000,=B24*B26,"1,500 * 2 = 3,000 tokens"
+Total Output Tokens per Session,600,=B25*B26,"300 * 2 = 600 tokens"
+Input Token Cost per Query Session,$0.00045,=(B27/1000000)*B22,"(3,000 / 1M) * $0.15"
+Output Token Cost per Query Session,$0.00036,=(B28/1000000)*B23,"(600 / 1M) * $0.60"
+Total LLM Token Cost per Session,$0.00081,=B29+B30,"$0.00045 + $0.00036 = $0.00081 per query"
+Embedding & Vector Search Cost (Pinecone / Vertex),$0.00050,0.00050,"Knowledge base vector similarity search per session"
+Serverless Compute & Logging (AWS Lambda / Cloudflare),$0.00169,0.00169,"API gateway, rate limiting, Datadog/LangSmith tracing"
+Total Infrastructure Cost per Query,$0.00300,=B31+B32+B33,"Fully loaded COGS per support query session ($0.0030 / ₹0.25)"
+Total Monthly AI Infrastructure Cost (12,000 queries),$36.00,=B9*B34,"12,000 queries * $0.0030 = $36.00/month (~₹3,000/mo)"
+Monthly AI Cost with 50% Peak Safety Buffer,$54.00,=B35*1.5,"Includes testing, synthetic monitoring, and retry loops"
+,,,
+Tab 3: Billing Strategy & Margin Analysis,,,
+Billing Option,Proposed Price to Customer,Monthly Cost to Serve,Gross Margin %,Strategic Recommendation
+Model A: Core Platform Free Inclusion,$0.00 / mo,$0.0072 / biz,=IF(B40=0,"N/A (Cost Deflector)",(B40-C40)/B40),"RECOMMENDED: Included in all paid tiers. Drives retention and eliminates churn"
+Model B: Priority Copilot Add-On (per biz),$19.00 / mo,$0.25 / biz,=(B41-C41)/B41,"High Margin Add-On: 98.7% margin. For 24/7 automated webhook healing"
+Model C: Pay-per-Resolved Query,$0.20 / query,$0.003 / query,=(B42-C42)/B42,"Alternative: 98.5% margin. Charges 1/4th of human agent cost"
+Recommended Hybrid Pricing Model,"Free Base + $19 Premium Tier",Blended,98.6%,"Tier 1: Free self-service. Tier 2: Priority real-time auto-healing"
+,,,
+Tab 4: Monthly Audit & Profitability Guardrails,,,
+Audit Check,Threshold / Trigger,Frequency,Automated Action
+Usage Spike Alert,> 80 sessions/biz/month,Daily real-time,"Soft-cap warning sent to customer to prevent runaway script loops"
+Cost Anomaly Alert,> $5.00/day total LLM spend,Hourly,Slack bot alert to Eng team + check for infinite recursive retries
+Token Exhaustion Guardrail,> 8,000 tokens in 1 session,Instant,Truncate context window & gracefully route to human agent
+Deflection Quality Audit,Sample of 250 closed tickets,Weekly,QA team inspects tickets; flagged if customer re-opened within 48h
+Hallucination Scanner,Regex + LLM Guardrail scan,Continuous,Blocks AI from quoting fictitious Meta approval guarantees
+,,,
+Tab 5: Human vs AI Financial Savings Analysis,,,
+Parameter / Metric,Human Support Alone (Baseline),With Cheerio AI Copilot,Variance / Savings,Formulas & Assumptions
+Total Monthly Queries,12000,12000,0,=B9
+Autonomous Deflection Rate,0.0%,65.0%,+65.0%,Copilot automates L1 setup queries
+Queries Requiring Human Handling,12000,4200,-7800,"Baseline: =B53; With Copilot: =B53*(1-C54)"
+Agent Productivity (Tickets/Month),600,600,0,"25 tickets/day * 24 working days = 600 tickets/agent"
+Support Agents Required,20,7,-13,"Baseline: =ROUNDUP(B55/B56,0); With Copilot: =ROUNDUP(C55/C56,0)"
+Monthly Cost per Agent (Salary + Benefits + Tools),$540,$540,$0,"₹45,000/month in Tier-2 India (~$540 USD)"
+Monthly Human Support Payroll,$10800,$3780,-$7020,"Baseline: =B57*B58; With Copilot: =C57*C58"
+Monthly AI Infrastructure Running Cost,$0,$36,+$36,"From Tab 2: =B35"
+Total Monthly Support Operating Cost,$10800,$3816,-$6984,"Baseline: =B59; With Copilot: =C59+C60"
+Net Monthly Operating Savings,-,-,$6984,"=B61-C61 (Net monthly savings: $6,984 / ₹5,83,000)"
+Net Annual Operating Savings,-,-,$83808,"=D62*12 (Net annual savings: ~$83,800 / ₹70 Lakhs)"
+Percentage Cost Reduction,-,-,64.7%,"=D62/B61 (64.7% reduction in total support OPEX)"
+First Response Time (Average),45 minutes,3 seconds,-99.9%,"Instant autonomous resolution vs queued human agent"
+First Contact Resolution (FCR),58%,78%,+20.0%,"Grounded error-code diagnosis eliminates back-and-forth emails"
+Customer Satisfaction (CSAT),3.8 / 5.0,4.6 / 5.0,+0.8 pts,"Instant unblocking drives customer delight during onboarding"

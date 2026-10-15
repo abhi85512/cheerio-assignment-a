@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheerio AI - Product Intern Take-Home Assignment (Abhishek Harde)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      body { background-color: #ffffff; color: #0f172a; }
+      .page-break { page-break-before: always; }
+      .no-print { display: none !important; }
+      .print-shadow-none { box-shadow: none !important; }
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased p-4 sm:p-8">
+  <div class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-2xl shadow-xl p-8 sm:p-12">
+    <!-- Header -->
+    <div class="border-b border-slate-200 pb-6 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 uppercase tracking-wide">Take-Home Assignment</span>
+          <span class="text-xs text-slate-500 font-medium">&bull; Assignment A</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Making Customer Support Scale for Non-Technical Users</h1>
+        <p class="text-sm text-slate-500 mt-1">Cheerio AI &bull; Product Intern Evaluation</p>
+      </div>
+      <div class="text-left sm:text-right text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+        <p><strong>Candidate:</strong> Abhishek Harde</p>
+        <p><strong>Date:</strong> October 15, 2026</p>
+        <p><strong>Prototype:</strong> <a href="http://localhost:3344/index.html" class="text-indigo-600 font-semibold underline">Live Cheerio Pilot</a></p>
+      </div>
+    </div>
+
+    <!-- Executive Summary Callout -->
+    <div class="bg-indigo-50/60 border border-indigo-100 rounded-xl p-5 mb-8">
+      <h3 class="text-xs font-bold text-indigo-900 uppercase tracking-wider mb-1.5">Executive Summary</h3>
+      <p class="text-xs leading-relaxed text-indigo-950">
+        Cheerio empowers 5,000+ businesses to scale over WhatsApp, SMS, and AI Voice. However, non-technical users regularly get stuck on Meta API setup, template formatting, chatbot flows, and webhooks—generating ~12,000 tickets/month. This proposal presents <strong>Cheerio Pilot</strong>: an in-situ diagnostic and 1-click self-healing copilot that achieves <strong>65% autonomous deflection</strong>, slashes time-to-first-campaign from <strong>48 hours to under 6 hours</strong>, and delivers <strong>$83,800 (~₹70 Lakhs) in net annual savings</strong> at an AI running cost of just <strong>$36/month</strong>.
+      </p>
+    </div>
+
+    <!-- Part 1: Solution -->
+    <section class="mb-10">
+      <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
+        <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">1</span>
+        <h2 class="text-lg font-bold text-slate-900">Part 1 &mdash; Solution (2-3 Pages)</h2>
+      </div>
+
+      <!-- Q1: User & Top 5 Issues -->
+      <div class="mb-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">1. Who is the user and what are the top 5 queries or issues to solve first?</h3>
+        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+          <strong>Target Persona:</strong> Non-technical Growth Marketers, SMB Owners, and Operations Managers (e.g. FabStyle D2C). They care about revenue outcomes, not API mechanics. Developer jargon (JSON, Webhook HMACs, DAG nodes, Graph API codes) creates immediate confusion and panic.
+        </p>
+        <div class="overflow-x-auto text-xs border border-slate-200 rounded-lg">
+          <table class="w-full text-left">
+            <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 text-[11px]">
+              <tr>
+                <th class="p-2.5 font-semibold">Rank</th>
+                <th class="p-2.5 font-semibold">Query Category</th>
+                <th class="p-2.5 font-semibold">Technical Trace</th>
+                <th class="p-2.5 font-semibold">% Volume</th>
+                <th class="p-2.5 font-semibold">Why Solve First?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-600 text-[11px]">
+              <tr>
+                <td class="p-2.5 font-bold text-indigo-600">#1</td>
+                <td class="p-2.5 font-semibold text-slate-800">WhatsApp Template Rejection</td>
+                <td class="p-2.5 font-mono">Meta #131030</td>
+                <td class="p-2.5 font-mono">25%</td>
+                <td class="p-2.5">Non-sequential variables ({{2}} without {{1}}) block promotional broadcasts.</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-indigo-600">#2</td>
+                <td class="p-2.5 font-semibold text-slate-800">Meta Phone Number Coexistence</td>
+                <td class="p-2.5 font-mono">Meta #133005</td>
+                <td class="p-2.5 font-mono">22%</td>
+                <td class="p-2.5">Number still registered on mobile app; Meta rejects Cloud API connection.</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-indigo-600">#3</td>
+                <td class="p-2.5 font-semibold text-slate-800">Chatbot Workflow Dead-Ends</td>
+                <td class="p-2.5 font-mono">DAG Branch Gap</td>
+                <td class="p-2.5 font-mono">20%</td>
+                <td class="p-2.5">Conditional node (cart > ₹2k) has unhandled false path; 14% customers drop off.</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-indigo-600">#4</td>
+                <td class="p-2.5 font-semibold text-slate-800">E-Commerce Webhook Disconnect</td>
+                <td class="p-2.5 font-mono">HTTP 401 Unauthorized</td>
+                <td class="p-2.5 font-mono">10%</td>
+                <td class="p-2.5">Shopify private secret rotated; WhatsApp order updates stop firing.</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-bold text-indigo-600">#5</td>
+                <td class="p-2.5 font-semibold text-slate-800">Meta Legal Verification / GST</td>
+                <td class="p-2.5 font-mono">Compliance Tier Cap</td>
+                <td class="p-2.5 font-mono">5%</td>
+                <td class="p-2.5">GST name mismatch caps messaging at 250/day. High value escalation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q2: Solutions & RICE -->
+      <div class="mb-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">2. Possible Solutions & Prioritization (RICE Framework)</h3>
+        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+          Evaluated 4 core approaches: (1) Static Documentation Library [RICE 50], (2) Generic AI Support Bot [RICE 53], (3) <strong>Embedded Diagnostic & Auto-Fix Copilot ("Cheerio Pilot") [RICE 202.5]</strong>, and (4) Co-Browsing Concierge [RICE 21].
+        </p>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          <strong>Why Option 3 was picked:</strong> Non-technical users do not read long documentation, and generic chatbots cannot access backend state. Option 3 acts directly at the point of failure: it intercepts the error payload, generates a 1-click deterministic fix, and verifies it with Meta Graph API.
+        </p>
+      </div>
+
+      <!-- Q3: Chosen Solution Scope -->
+      <div class="mb-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">3. Chosen Solution: What It Will Do & What It Will NOT Do</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="bg-emerald-50/60 border border-emerald-200 rounded-xl p-3.5">
+            <h4 class="font-bold text-emerald-900 mb-1.5 flex items-center gap-1.5">
+              <span>&check;</span> What Cheerio Pilot WILL Do
+            </h4>
+            <ul class="text-emerald-950 space-y-1 list-disc list-inside text-[11px]">
+              <li>Translates cryptic Meta/Shopify errors into plain non-technical English.</li>
+              <li>1-click auto-repair for template parameters and sample data injection.</li>
+              <li>Visual DAG linter that auto-synthesizes fallback nodes for broken flows.</li>
+              <li>Pre-flight validation on CSV audience lists and country codes (+91).</li>
+              <li>Auto-packages diagnostic dossiers when escalating to human specialists.</li>
+            </ul>
+          </div>
+
+          <div class="bg-rose-50/60 border border-rose-200 rounded-xl p-3.5">
+            <h4 class="font-bold text-rose-900 mb-1.5 flex items-center gap-1.5">
+              <span>&times;</span> What Cheerio Pilot Will NOT Do
+            </h4>
+            <ul class="text-rose-950 space-y-1 list-disc list-inside text-[11px]">
+              <li>Cannot bypass Meta Commerce Policies or legalize prohibited goods.</li>
+              <li>Will never perform irreversible actions (deleting contacts, wiping WABA).</li>
+              <li>Does not hallucinate fake approval timelines or artificial guarantees.</li>
+              <li>Does not replace human account managers for high-touch enterprise contracts.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4: Human Escalation -->
+      <div class="mb-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">4. When Does a Human Still Need to Step In?</h3>
+        <p class="text-xs text-slate-600 leading-relaxed mb-2">
+          Strict, non-negotiable escalation triggers:
+        </p>
+        <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+          <li><strong>Meta Legal Verification & Green Tick Compliance:</strong> Discrepancies between GST certificates and Meta Business Manager require human liaison.</li>
+          <li><strong>Financial & Billing Disputes:</strong> Wallet debits, payment gateway 3DS failures, and credit line upgrades.</li>
+          <li><strong>Exhaustion Guardrail (2-Fail Rule):</strong> If automated remediation fails twice, execution halts to avoid retry storms.</li>
+          <li><strong>Negative Sentiment / Explicit Request:</strong> User requests human assistance or expresses frustration.</li>
+        </ul>
+        <p class="text-xs text-slate-600 mt-2">
+          <em>Zero-Friction Escalation:</em> The human receives a pre-assembled <strong>Diagnostic Dossier</strong> (WABA ID, raw payload, steps tried, urgency). The user never has to re-explain anything.
+        </p>
+      </div>
+
+      <!-- Q5: 3 Metrics -->
+      <div class="mb-6">
+        <h3 class="text-sm font-bold text-slate-900 mb-2">5. Success Measurement: 3 Core Metrics</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+            <span class="text-[10px] font-bold text-indigo-600 uppercase font-mono">Metric 1</span>
+            <h4 class="font-bold text-slate-900 mt-0.5">Autonomous Deflection</h4>
+            <p class="text-slate-500 text-[11px] mt-1">Target: <strong>65%</strong> of L1 setup queries resolved without human intervention.</p>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+            <span class="text-[10px] font-bold text-indigo-600 uppercase font-mono">Metric 2</span>
+            <h4 class="font-bold text-slate-900 mt-0.5">Time to First Campaign</h4>
+            <p class="text-slate-500 text-[11px] mt-1">Target: Cut onboarding time from <strong>48 hours to under 6 hours</strong>.</p>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg">
+            <span class="text-[10px] font-bold text-indigo-600 uppercase font-mono">Metric 3</span>
+            <h4 class="font-bold text-slate-900 mt-0.5">FCR & CSAT Rating</h4>
+            <p class="text-slate-500 text-[11px] mt-1">Target: <strong>>78%</strong> First Contact Resolution; CSAT <strong>>4.5/5.0</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6: North Star Metric -->
+      <div class="p-4 bg-indigo-50/70 border border-indigo-200 rounded-xl">
+        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-600 text-white uppercase font-mono">North Star Metric</span>
+        <h4 class="text-sm font-extrabold text-indigo-950 mt-1">
+          "Zero-Touch Activation Rate (% of new businesses that launch a successful 100+ message campaign or automated workflow within 72 hours without opening a human support ticket)."
+        </h4>
+        <p class="text-xs text-indigo-900 mt-1">
+          <strong>3-Month Target:</strong> Improve baseline from <strong>32% to 65%</strong> (+103% relative improvement).
+        </p>
+        <p class="text-xs text-indigo-900/80 mt-1">
+          <em>Roadmap:</em> Month 1 (Pre-flight template & CSV linters cut 35% of errors) &rarr; Month 2 (In-situ 1-click auto-fix engine) &rarr; Month 3 (Automated DAG flow patchers & Telemetry Dossiers).
+        </p>
+      </div>
+    </section>
+
+    <!-- Page Break for Printing -->
+    <div class="page-break"></div>
+
+    <!-- Part 2: Prototype -->
+    <section class="mb-10 pt-4">
+      <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
+        <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">2</span>
+        <h2 class="text-lg font-bold text-slate-900">Part 2 &mdash; Design Prototype Walkthrough</h2>
+      </div>
+
+      <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+        We developed an interactive, clickable prototype: <strong>Cheerio Pilot</strong>. It models real-time Meta API error interception, visual side-by-side diffing, live WhatsApp mobile preview, and 1-click deterministic resubmission.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div class="border border-slate-200 rounded-xl p-2 bg-slate-50">
+          <img src="screenshots/screen1_troubleshooter.png" alt="Troubleshooter" class="rounded-lg shadow-sm w-full">
+          <p class="text-[10px] text-slate-600 mt-1.5 font-medium text-center">Screen 1: Health Monitor & WhatsApp Template Error Interception</p>
+        </div>
+        <div class="border border-slate-200 rounded-xl p-2 bg-slate-50">
+          <img src="screenshots/screen2_autofix_success.png" alt="Auto-Fix Success" class="rounded-lg shadow-sm w-full">
+          <p class="text-[10px] text-slate-600 mt-1.5 font-medium text-center">Screen 2: 1-Click Auto-Fix, Meta Approval & WhatsApp Mobile Preview</p>
+        </div>
+        <div class="border border-slate-200 rounded-xl p-2 bg-slate-50">
+          <img src="screenshots/screen3_cost_roi_model.png" alt="Cost Model" class="rounded-lg shadow-sm w-full">
+          <p class="text-[10px] text-slate-600 mt-1.5 font-medium text-center">Screen 3: Financial & Support Scale Economics Calculator</p>
+        </div>
+        <div class="border border-slate-200 rounded-xl p-2 bg-slate-50">
+          <img src="screenshots/screen4_product_spec_sla.png" alt="Product Spec" class="rounded-lg shadow-sm w-full">
+          <p class="text-[10px] text-slate-600 mt-1.5 font-medium text-center">Screen 4: Product Spec, Boundary Limits & 90-Day North Star Plan</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page Break for Printing -->
+    <div class="page-break"></div>
+
+    <!-- Part 3: How AI Was Used -->
+    <section class="mb-10 pt-4">
+      <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
+        <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">3</span>
+        <h2 class="text-lg font-bold text-slate-900">Part 3 &mdash; How AI Was Used (AI Usage Diary)</h2>
+      </div>
+
+      <div class="space-y-4 text-xs text-slate-600">
+        <div>
+          <h4 class="font-bold text-slate-800">1. AI Tools Utilized</h4>
+          <p>Claude 3.5 Sonnet (system architecture, failure mode taxonomy), OpenAI GPT-4o-mini (token economics, spreadsheet formulas), and Cursor / Antigravity IDE (interactive web prototype coding & verification).</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800">2. Key Prompts: 3 That Worked & 1 That Failed</h4>
+          <ul class="space-y-1.5 list-disc list-inside">
+            <li><strong>Worked 1 (Domain Roleplay):</strong> Framed model as Principal PM at Meta BSP to map error codes (#131030, #133005) into plain-language root causes and deterministic payloads.</li>
+            <li><strong>Worked 2 (Formula Derivation):</strong> Demanded exact Google Sheet formula syntax (`=SUM`, `=B5*C5`) for 5,000 businesses and 12,000 monthly tickets at $0.15/$0.60 per 1M tokens.</li>
+            <li><strong>Worked 3 (Interactive Prototype):</strong> Scaffolding Tailwind CSS UI with phone preview mockup and live telemetry counters.</li>
+            <li><strong>Failed 1 (The Generic Support Bot):</strong> Asked for an open-ended chatbot to "answer all questions". Result was a generic, hallucinating bot that promised impossible feats (guaranteed instant green ticks). <strong>Revision:</strong> Pivoted to an <em>in-situ diagnostic & 1-click auto-fix engine</em> grounded in backend logs.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800">3. Hallucinations Caught & Overruled</h4>
+          <p>Caught and removed false promises on Meta approval speed; caught omission of WhatsApp mobile app coexistence constraints (error #133005); overruled AI's suggestion to charge users $0.50 per support conversation (which creates onboarding friction).</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-800">4. Manual Thinking Done Without AI</h4>
+          <p>Strategic product positioning ("Solve at point of failure with 1-click fix, not chat"), RICE prioritization trade-offs, hard legal/compliance escalation boundaries, and unit economics sanity checks for Indian support salaries (₹45,000/mo fully loaded).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part 4: Numbers -->
+    <section class="mb-4">
+      <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-200">
+        <span class="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">4</span>
+        <h2 class="text-lg font-bold text-slate-900">Part 4 &mdash; Numbers: Cost, Billing, Audit & Savings</h2>
+      </div>
+
+      <!-- Financial Table -->
+      <div class="overflow-x-auto text-xs border border-slate-200 rounded-lg mb-4">
+        <table class="w-full text-left">
+          <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 text-[11px]">
+            <tr>
+              <th class="p-2.5 font-semibold">Parameter / Metric</th>
+              <th class="p-2.5 font-semibold">Human Support Baseline</th>
+              <th class="p-2.5 font-semibold">With Cheerio Pilot</th>
+              <th class="p-2.5 font-semibold">Variance / Net Savings</th>
+              <th class="p-2.5 font-semibold">Formula / Derivation</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-600 text-[11px] font-mono">
+            <tr>
+              <td class="p-2.5 font-sans font-medium text-slate-800">Total Monthly Queries</td>
+              <td class="p-2.5">12,000</td>
+              <td class="p-2.5">12,000</td>
+              <td class="p-2.5 font-sans text-slate-500">0</td>
+              <td class="p-2.5 text-slate-500">=(3000*1.5)+(1500*3)+(500*6)</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-sans font-medium text-slate-800">Deflection Rate</td>
+              <td class="p-2.5 text-rose-600">0.0%</td>
+              <td class="p-2.5 text-emerald-600 font-bold">65.0%</td>
+              <td class="p-2.5 text-emerald-600 font-bold">+65.0%</td>
+              <td class="p-2.5 text-slate-500">7,800 resolved by Copilot</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-sans font-medium text-slate-800">Human Agents Needed</td>
+              <td class="p-2.5 text-rose-600">20 Agents</td>
+              <td class="p-2.5 text-indigo-600 font-bold">7 Agents</td>
+              <td class="p-2.5 text-emerald-600 font-bold">-13 Agents Saved</td>
+              <td class="p-2.5 text-slate-500">Tickets / (25*24 days)</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-sans font-medium text-slate-800">Human Payroll Cost</td>
+              <td class="p-2.5 text-rose-600">$10,800 / mo</td>
+              <td class="p-2.5 text-indigo-600">$3,780 / mo</td>
+              <td class="p-2.5 text-emerald-600 font-bold">-$7,020 / mo</td>
+              <td class="p-2.5 text-slate-500">Agents * $540 (₹45,000/mo)</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-sans font-medium text-slate-800">AI Running Cost</td>
+              <td class="p-2.5">$0.00</td>
+              <td class="p-2.5 text-indigo-600">$36.00 / mo</td>
+              <td class="p-2.5">+$36.00 / mo</td>
+              <td class="p-2.5 text-slate-500">12,000 * $0.003 (GPT-4o-mini)</td>
+            </tr>
+            <tr class="bg-emerald-50/60 font-bold">
+              <td class="p-2.5 font-sans text-emerald-950">Net Monthly Savings</td>
+              <td class="p-2.5 text-slate-500">-</td>
+              <td class="p-2.5 text-slate-500">-</td>
+              <td class="p-2.5 text-emerald-700 text-sm">$6,984 / month</td>
+              <td class="p-2.5 text-emerald-700">₹5,83,000 / month saved</td>
+            </tr>
+            <tr class="bg-emerald-50 font-bold">
+              <td class="p-2.5 font-sans text-emerald-950">Net Annual Savings</td>
+              <td class="p-2.5 text-slate-500">-</td>
+              <td class="p-2.5 text-slate-500">-</td>
+              <td class="p-2.5 text-emerald-700 text-sm">$83,808 / year</td>
+              <td class="p-2.5 text-emerald-700">₹70 Lakhs / year (64.7% OPEX cut)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Billing, Audit & Guardrails -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <h4 class="font-bold text-slate-900 mb-1">Billing Strategy & Margin</h4>
+          <p class="text-slate-600 text-[11px] leading-relaxed mb-1.5">
+            <strong>Hybrid Model:</strong> Core Copilot is <strong>100% Free</strong> on all plans to drive activation and eliminate churn. Premium add-on <em>"Cheerio Guardian"</em> priced at <strong>$19/month (₹1,499/mo)</strong> for continuous 24/7 webhook healing and priority SLA. Cost to serve: $0.25/mo &rarr; <strong>98.7% Gross Margin</strong>.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <h4 class="font-bold text-slate-900 mb-1">Monthly Audit & Safeguards</h4>
+          <p class="text-slate-600 text-[11px] leading-relaxed">
+            <strong>Automated Controls:</strong> Soft session cap of 80 sessions/month/account; Slack PagerDuty alerts if daily LLM spend exceeds $5.00/day; runaway loop breaker at 8,000 tokens; weekly 250-ticket QA audit on any auto-closed ticket re-opened within 48 hours.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="mt-8 pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400">
+      <span>Cheerio AI Product Intern Assignment Deliverable &bull; Abhishek Harde</span>
+      <span>Live Local Prototype: http://localhost:3344/index.html</span>
+    </div>
+  </div>
+</body>
+</html>
